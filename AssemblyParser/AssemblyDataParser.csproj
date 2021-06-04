@@ -42,7 +42,7 @@
     <Company>https://github.com/Platonenkov</Company>
     <PackageProjectUrl>https://github.com/Platonenkov/AssemblyDataParser</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/Platonenkov</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Platonenkov.git</RepositoryUrl>
     <PackageTags>Assembly, version, package data</PackageTags>
     <PackageReleaseNotes>Упрощён доступ к информации о сборке, информация о версии и обновлениях сборки
 Easier access to assembly information, version information, and assembly updates</PackageReleaseNotes>

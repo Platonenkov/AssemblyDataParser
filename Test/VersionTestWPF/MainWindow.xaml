@@ -22,7 +22,16 @@
             </Border.BorderBrush>
             <!--<Image Source="../../Media/scac logo.PNG"/>-->
         </Border>
-        <GroupBox  Header="This application assembly information"
+        <GroupBox  Header="This is test section"
+                   Margin="20,20,20,10" DockPanel.Dock="Top">
+            <TextBlock>
+                <Run Text="Library name" />
+                <Run Text=": " />
+                <Run Text="{Binding Assembly, Source={x:Type local:App}, Converter={converters:AssemblyTitleConverter}, Mode=OneTime}" />
+            </TextBlock>
+
+        </GroupBox>
+                <GroupBox  Header="This application assembly information"
                    DataContext="{Binding Assembly, Source={x:Type local:App}}"
                    Margin="20,20,20,10" DockPanel.Dock="Top">
             <DockPanel >
