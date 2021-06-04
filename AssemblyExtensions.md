@@ -1,7 +1,7 @@
 ## Assembly extensions
 
 <table>
-  <th>
+  <thead>
     <tr>
       <td width="50%">
         Method
@@ -13,7 +13,7 @@
         En
       </td>
     </tr>
-  </th>
+  </thead>
   <tbody>
     <tr>
       <td>
