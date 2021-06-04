@@ -1,0 +1,98 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1;net4.6.1-windows;net4.7-windows;net4.8-windows</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SourceRevisionId>
+      ^build_date$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))
+      ^update
+      [
+      {
+      "VersionNumber": "1.0.0.0",
+      "Description": [
+      "Добавлен класс AssemblyParser для получения информации из сборки",
+      "Добавлено статическое расширение для класса Assebly, позволяющее быстро получить данные о сборки",
+      "Добавлена возможность обработки мета-информации в секции SourceRevisionId",
+      ]
+      },
+      <!--[
+      {
+      "VersionNumber": "1.0.0.0",
+      "Description": [
+      "Change 1",
+      "Change 2",
+      ]
+      },
+      {
+      "VersionNumber": "1.0.0.5",
+      "Description": [
+      "Change 1",
+      "Change 2",
+      ]
+      },
+      ]-->
+      ]
+    </SourceRevisionId>
+    <Version>1.0.0.0</Version>
+    <Copyright>https://github.com/Platonenkov</Copyright>
+    <Authors>Platonenkov</Authors>
+    <Company>https://github.com/Platonenkov</Company>
+    <PackageProjectUrl>https://github.com/Platonenkov/AssemblyDataParser</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Platonenkov</RepositoryUrl>
+    <PackageTags>Assembly, version, package data</PackageTags>
+    <PackageReleaseNotes>Упрощён доступ к информации о сборке, информация о версии и обновлениях сборки
+Easier access to assembly information, version information, and assembly updates</PackageReleaseNotes>
+    <Description>Предназначена для доступа к информации о сборке, информации о версии и обновлениях сборки
+Provides access to assembly information, version information, and assembly updates</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <!--<SourceRevisionId>update[{"VersionNumber":"1.1.1.1","Description":["sdfdsf","dsdfdsf"]}]</SourceRevisionId> 
+    <SourceRevisionId>build_date$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))</SourceRevisionId>-->
+  </PropertyGroup>
+
+  <!--<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="System.Text.Json">
+      <Version>5.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="System.Text.Json">
+      <Version>5.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net4.6.1'">
+    <PackageReference Include="System.Text.Json">
+      <Version>5.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net4.7'">
+    <PackageReference Include="System.Text.Json">
+      <Version>5.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net4.8'">
+    <PackageReference Include="System.Text.Json">
+      <Version>5.0.2</Version>
+    </PackageReference>
+  </ItemGroup>-->
+
+  <ItemGroup>
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+    <PackageReference Include="System.Text.Json" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Resources\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

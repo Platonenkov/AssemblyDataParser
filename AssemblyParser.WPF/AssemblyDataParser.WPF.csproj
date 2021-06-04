@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0-windows;netcoreapp3.1-windows;net4.6.1-windows;net4.7-windows;net4.8-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AssemblyParser\AssemblyDataParser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Resources\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <SourceRevisionId>
+      ^build_date$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))
+      ^update
+      [
+      {
+      "VersionNumber": "1.0.0.0",
+      "Description": [
+      "Созданы конверторы для чтения данных о сбоке по namespace",
+      ]
+      },
+      ]
+    </SourceRevisionId>
+    <Authors>Platonenkov</Authors>
+    <Company>https://github.com/Platonenkov</Company>
+    <Description>Предназначена для доступа к информации о сборке, информации о версии и обновлениях сборки
+Provides access to assembly information, version information, and assembly updates</Description>
+    <Copyright>https://github.com/Platonenkov</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Platonenkov/AssemblyDataParser</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Platonenkov</RepositoryUrl>
+    <PackageTags>Assembly, version, package data</PackageTags>
+    <PackageReleaseNotes>Упрощён доступ к информации о сборке, информация о версии и обновлениях сборки
+Easier access to assembly information, version information, and assembly updates</PackageReleaseNotes>
+
+  </PropertyGroup>
+</Project>
