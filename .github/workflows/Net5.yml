@@ -30,8 +30,6 @@ jobs:
       run: |
           dotnet build AssemblyParser/AssemblyDataParser.csproj -c Release
           dotnet pack AssemblyParser/AssemblyDataParser.csproj -c Release
-          dotnet build AssemblyParser.WPF/AssemblyDataParser.WPF.csproj -c Release          
-          dotnet pack AssemblyParser.WPF/AssemblyDataParser.WPF.csproj -c Release
           
     - name: Push package
       run: dotnet nuget push "**/*.nupkg" --skip-duplicate --source https://nuget.pkg.github.com/platonenkov/index.json -k ${{secrets.GITHUB_TOKEN}}     
