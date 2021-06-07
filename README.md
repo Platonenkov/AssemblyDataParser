@@ -1,6 +1,10 @@
 # AssemblyDataParser
 Пакеты для чтения данных о сборке
 
+Install-PackageAssemblyDataParser -Version 1.0.0.1
+
+Install-Package AssemblyDataParser.WPF -Version 1.0.0.1  `For WPF with UserControls and Converters`
+
 ### Quick start
 
 
@@ -146,10 +150,15 @@ Show in window:
 xmlns:view="clr-namespace:AssemblyDataParser.WPF.View;assembly=AssemblyDataParser.WPF"
 
 <view:AssemblyUpdateDataView DataContext="{Binding Assembly, Source={x:Type local:App}}"/>
-
 ```
+
+![Demo](https://github.com/Platonenkov/AssemblyDataParser/blob/dev/Resources/UpdateData.jpg)
+
 Show Assembly info (you can hide unnecessary fields):
 ```C#
 xmlns:view="clr-namespace:AssemblyDataParser.WPF.View;assembly=AssemblyDataParser.WPF"
+
 <view:AssemblyDataView DockPanel.Dock="Top" Margin="10,0" TrademarkVisibility="False"/>
 ```
+
+![Demo](https://github.com/Platonenkov/AssemblyDataParser/blob/dev/Resources/AssemblyData.jpg)
