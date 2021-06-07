@@ -12,8 +12,6 @@ namespace VersionTestConsole
     {
         static void Main(string[] args)
         {
-            var assembly = Assembly.GetAssembly(typeof(AssemblyParser));
-
             var buildTime = Assembly.GetAssembly(typeof(AssemblyParser)).ParseLinkerTime(true);
             Console.WriteLine($"Build time at {buildTime}");
 

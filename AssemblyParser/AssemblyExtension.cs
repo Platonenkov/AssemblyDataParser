@@ -15,6 +15,8 @@ namespace AssemblyDataParser
         static Func<Assembly, object> GetAttributeValue<T>([NotNull] Func<T, object> Converter)
             where T : Attribute => asm =>
         {
+            if (asm is null) return null;
+
             var a = asm.GetCustomAttributes(typeof(T), false).OfType<T>().FirstOrDefault();
             return a is null ? null : Converter(a);
         };

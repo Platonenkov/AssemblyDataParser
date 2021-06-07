@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="AssemblyDataParser.WPF.View.AssemblyDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssemblyDataParser.WPF.View"
+             xmlns:converters="clr-namespace:AssemblyDataParser.WPF.Converters"
+             xmlns:sub="clr-namespace:AssemblyDataParser.WPF.Converters.Sub"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel DockPanel.Dock="Top" Margin="10,0" d:DataContext="{Binding Assembly, Source={x:Type local:AssemblyDataView}}">
+        <TextBlock Visibility="{Binding LibraryNameVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="Library name" />
+            <Run Text=": " />
+            <Run Text="{Binding Converter={converters:AssemblyTitleConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Visibility="{Binding VersionVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+                <Run Text="Version" />
+                <Run Text=": " />
+                <Run
+                    Text="{Binding Converter={converters:AssemblyVersionConverter}, Mode=OneTime}" />
+            </TextBlock>
+            <TextBlock Margin="3,0,0,0"
+                Visibility="{Binding BuildFromVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+                <Run Text="From" />
+                <Run Text=": " />
+                <Run
+                    Text="{Binding Converter={converters:AssemblyTimeConverter},Mode=OneTime, ConverterCulture=ru-RU}" />
+            </TextBlock>
+
+        </StackPanel>
+        <TextBlock Visibility="{Binding BuildAtVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="Build at" />
+            <Run Text=": " />
+            <Run Text="{Binding Converter={converters:AssemblyLinkerTimeConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <TextBlock Visibility="{Binding FileVersionVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="File version" />
+            <Run Text=": " />
+            <Run
+                Text="{Binding Converter={converters:AssemblyFileVersionConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <TextBlock Visibility="{Binding ProjectVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="Project" />
+            <Run Text=": " />
+            <Run Text="{Binding Converter={converters:AssemblyProductConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <TextBlock Visibility="{Binding TrademarkVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="Trademark" />
+            <Run Text=": " />
+            <Run Text="{Binding Converter={converters:AssemblyTrademarkConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <TextBlock Visibility="{Binding CompanyVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="Company" />
+            <Run Text=": " />
+            <Run Text="{Binding Converter={converters:AssemblyCompanyConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <TextBlock Visibility="{Binding CopyrightVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="{Binding Converter={converters:AssemblyCopyrightConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <TextBlock Visibility="{Binding ConfigurationVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <Run Text="Configuration" />
+            <Run Text=": " />
+            <Run Text="{Binding Converter={converters:AssemblyConfigurationConverter}, Mode=OneTime}" />
+        </TextBlock>
+        <Expander Header="Description" Padding="5,0" IsExpanded="True"
+                  Visibility="{Binding DescriptionVisibility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={sub:BoolToVisibility Collapse=True}}">
+            <TextBlock Text="{Binding Converter={converters:AssemblyDescriptionConverter}, Mode=OneTime}" TextWrapping="Wrap" />
+        </Expander>
+    </StackPanel>
+</UserControl>
