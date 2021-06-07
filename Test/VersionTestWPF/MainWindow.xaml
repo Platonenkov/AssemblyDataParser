@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:VersionTestWPF"
         xmlns:converters="clr-namespace:AssemblyDataParser.WPF.Converters;assembly=AssemblyDataParser.WPF"
         xmlns:assemblyDataParser="clr-namespace:AssemblyDataParser;assembly=AssemblyDataParser"
+        xmlns:view="clr-namespace:AssemblyDataParser.WPF.View;assembly=AssemblyDataParser.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -22,6 +23,7 @@
             </Border.BorderBrush>
             <!--<Image Source="../../Media/scac logo.PNG"/>-->
         </Border>
+
         <GroupBox  Header="This is test section"
                    Margin="20,20,20,10" DockPanel.Dock="Top">
             <TextBlock>
@@ -35,267 +37,24 @@
                    DataContext="{Binding Assembly, Source={x:Type local:App}}"
                    Margin="20,20,20,10" DockPanel.Dock="Top">
             <DockPanel >
-                <StackPanel DockPanel.Dock="Top" Margin="10,0">
-                    <TextBlock>
-                        <Run Text="Library name" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyTitleConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Version" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyVersionConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                        <Run Text="From" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyTimeConverter}, StringFormat=' {0}', Mode=OneTime, ConverterCulture=ru-RU}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Build at" />
-                        <Run Text="{Binding Converter={converters:AssemblyLinkerTimeConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="File version" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyFileVersionConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Project" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyProductConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Trade mark" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyTrademarkConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock Text="{Binding Converter={converters:AssemblyCompanyConverter}, Mode=OneTime}" />
-                    <TextBlock Text="{Binding Converter={converters:AssemblyCopyrightConverter}, Mode=OneTime}" />
-                    <TextBlock>
-                        <Run Text="Configuration" />
-                        <Run Text="{Binding Converter={converters:AssemblyConfigurationConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                </StackPanel>
-                <DockPanel DockPanel.Dock="Bottom" >
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding Converter={converters:AssemblyLinkerUpdateDataConverter}}" Margin="5">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type assemblyDataParser:AssemblyVersionData}">
-                                    <Expander Header="{Binding VersionNumber}" IsExpanded="True">
-                                        <Expander.HeaderTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}" FontWeight="Bold" FontSize="18"/>
-                                            </DataTemplate>
-                                        </Expander.HeaderTemplate>
-                                        <StackPanel>
-                                            <ItemsControl ItemsSource="{Binding Description}">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <StackPanel/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding }"  FontSize="14" TextWrapping="Wrap" Margin="15,2"/>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-
-                                        </StackPanel>
-                                    </Expander>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </DockPanel>
-                <GroupBox Header="Description" Padding="5,0">
-                    <TextBlock Text="{Binding Converter={converters:AssemblyDescriptionConverter}, Mode=OneTime}" TextWrapping="Wrap" />
-                </GroupBox>
-
+                <view:AssemblyDataView DockPanel.Dock="Top" Margin="10,0" BuildAtVisibility="False" TrademarkVisibility="False" ConfigurationVisibility="True"/>
+                <view:AssemblyUpdateDataView DockPanel.Dock="Bottom"/>
             </DockPanel>
         </GroupBox>
         <GroupBox  Header="Source library assembly information"
                    DataContext="{Binding Assembly, Source={x:Type assemblyDataParser:AssemblyParser}}"
                    Margin="20,20,20,10" DockPanel.Dock="Top">
             <DockPanel >
-                <StackPanel DockPanel.Dock="Top" Margin="10,0">
-                    <TextBlock>
-                        <Run Text="Library name" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyTitleConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Version" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyVersionConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                        <Run Text="From" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyTimeConverter}, StringFormat=' {0}', Mode=OneTime, ConverterCulture=ru-RU}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Build at" />
-                        <Run Text="{Binding Converter={converters:AssemblyLinkerTimeConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="File version" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyFileVersionConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Project" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyProductConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Company" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyCompanyConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Copyright @" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyCopyrightConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Configuration" />
-                        <Run Text="{Binding Converter={converters:AssemblyConfigurationConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                </StackPanel>
-                <DockPanel DockPanel.Dock="Bottom" >
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding Converter={converters:AssemblyLinkerUpdateDataConverter}}" Margin="5">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type assemblyDataParser:AssemblyVersionData}">
-                                    <Expander Header="{Binding VersionNumber}" IsExpanded="True">
-                                        <Expander.HeaderTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}" FontWeight="Bold" FontSize="18"/>
-                                            </DataTemplate>
-                                        </Expander.HeaderTemplate>
-                                        <StackPanel>
-                                            <ItemsControl ItemsSource="{Binding Description}">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <StackPanel/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding }"  FontSize="14" TextWrapping="Wrap" Margin="15,2"/>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-
-                                        </StackPanel>
-                                    </Expander>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </DockPanel>
-                <GroupBox Header="Description" Padding="5,0">
-                    <TextBlock Text="{Binding Converter={converters:AssemblyDescriptionConverter}, Mode=OneTime}" TextWrapping="Wrap" />
-                </GroupBox>
-
+                    <view:AssemblyDataView DockPanel.Dock="Top" Margin="10,0"  TrademarkVisibility="False" />
+                <view:AssemblyUpdateDataView DockPanel.Dock="Bottom"/>
             </DockPanel>
         </GroupBox>
         <GroupBox  Header="Second source library assembly information"
                    DataContext="{Binding Assembly, Source={x:Type converters:AssemblyVersionConverter}}"
                    Margin="20,20,20,10">
             <DockPanel >
-                <StackPanel DockPanel.Dock="Top" Margin="10,0">
-                    <TextBlock>
-                        <Run Text="Library name" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyTitleConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Version" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyVersionConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                        <Run Text="From" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyTimeConverter}, StringFormat=' {0}', Mode=OneTime, ConverterCulture=ru-RU}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Build at" />
-                        <Run Text="{Binding Converter={converters:AssemblyLinkerTimeConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="File version" />
-                        <Run
-                            Text="{Binding Converter={converters:AssemblyFileVersionConverter}, StringFormat=': {0} ', Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Project" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyProductConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Company" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyCompanyConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Copyright @" />
-                        <Run Text=": " />
-                        <Run Text="{Binding Converter={converters:AssemblyCopyrightConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Configuration" />
-                        <Run Text="{Binding Converter={converters:AssemblyConfigurationConverter}, Mode=OneTime}" />
-                    </TextBlock>
-                </StackPanel>
-                <DockPanel DockPanel.Dock="Bottom" >
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding Converter={converters:AssemblyLinkerUpdateDataConverter}}" Margin="5">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type assemblyDataParser:AssemblyVersionData}">
-                                    <Expander Header="{Binding VersionNumber}" IsExpanded="True">
-                                        <Expander.HeaderTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}" FontWeight="Bold" FontSize="18"/>
-                                            </DataTemplate>
-                                        </Expander.HeaderTemplate>
-                                        <StackPanel>
-                                            <ItemsControl ItemsSource="{Binding Description}">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <StackPanel/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding }"  FontSize="14" TextWrapping="Wrap" Margin="15,2"/>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-
-                                        </StackPanel>
-                                    </Expander>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </DockPanel>
-                <GroupBox Header="Description" Padding="5,0">
-                    <TextBlock Text="{Binding Converter={converters:AssemblyDescriptionConverter}, Mode=OneTime}" TextWrapping="Wrap" />
-                </GroupBox>
-
+                    <view:AssemblyDataView DockPanel.Dock="Top" Margin="10,0" TrademarkVisibility="False"/>
+                    <view:AssemblyUpdateDataView DockPanel.Dock="Bottom"/>
             </DockPanel>
         </GroupBox>
     </DockPanel>

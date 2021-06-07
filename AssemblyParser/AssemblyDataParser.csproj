@@ -11,6 +11,12 @@
       ^update
       [
       {
+      "VersionNumber": "1.0.0.1",
+      "Description": [
+      "Повышение стабильности чтения данных из секции информации",
+      ]
+      },
+      {
       "VersionNumber": "1.0.0.0",
       "Description": [
       "Добавлен класс AssemblyParser для получения информации из сборки",
@@ -36,9 +42,10 @@
       ]-->
       ]
     </SourceRevisionId>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.1</Version>
     <Copyright>https://github.com/Platonenkov</Copyright>
     <Authors>Platonenkov</Authors>
+    <Trademark>Platonenkov</Trademark>
     <Company>https://github.com/Platonenkov</Company>
     <PackageProjectUrl>https://github.com/Platonenkov/AssemblyDataParser</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
@@ -49,39 +56,7 @@ Easier access to assembly information, version information, and assembly updates
     <Description>Предназначена для доступа к информации о сборке, информации о версии и обновлениях сборки
 Provides access to assembly information, version information, and assembly updates</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <!--<SourceRevisionId>update[{"VersionNumber":"1.1.1.1","Description":["sdfdsf","dsdfdsf"]}]</SourceRevisionId> 
-    <SourceRevisionId>build_date$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))</SourceRevisionId>-->
   </PropertyGroup>
-
-  <!--<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-    <PackageReference Include="System.Text.Json">
-      <Version>5.0.2</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <PackageReference Include="System.Text.Json">
-      <Version>5.0.2</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net4.6.1'">
-    <PackageReference Include="System.Text.Json">
-      <Version>5.0.2</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net4.7'">
-    <PackageReference Include="System.Text.Json">
-      <Version>5.0.2</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net4.8'">
-    <PackageReference Include="System.Text.Json">
-      <Version>5.0.2</Version>
-    </PackageReference>
-  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="System.Runtime" Version="4.3.1" />
