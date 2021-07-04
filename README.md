@@ -1,9 +1,9 @@
 # AssemblyDataParser
 Пакеты для чтения данных о сборке
 
-Install-PackageAssemblyDataParser -Version 1.0.0.1
+Install-PackageAssemblyDataParser -Version 1.0.1
 
-Install-Package AssemblyDataParser.WPF -Version 1.0.0.1  `For WPF with UserControls and Converters`
+Install-Package AssemblyDataParser.WPF -Version 1.0.1  `For WPF with UserControls and Converters`
 
 ### Quick start
 
