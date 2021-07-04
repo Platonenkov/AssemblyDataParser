@@ -60,19 +60,24 @@ Use `VersionData` class structure to storing update informations
     "Description": [
       "First comment",
       "Second comment"
-    ]
+    ],
+    "Date" : "11.01.21"
   },
   {
     "VersionNumber": "1.0.106.1",
     "Description": [
       "First comment",
       "Second comment"
-    ]
+    ],
+    "Date" : "09.01.21"
   }
 ]
 ```
 
 Store information in the AssemblyInfo
+
+`WARNING` - It\'s doesn\`t support very long text, I don\`t recomended use it
+
 if you use `Net5` or above, `Core`, `Standard` - fill the section in `*.csproj`
 ```XML
   <PropertyGroup>
@@ -99,6 +104,8 @@ if you use `Net5` or above, `Core`, `Standard` - fill the section in `*.csproj`
 ```
 
 For `NetFramework` - fill the section in `AssemblyInfo.cs`
+
+`WARNING` - It\'s doesn\`t support very long text, I don\`t recomended use it
 ```C#
 [assembly: AssemblyInformationalVersion(
     "^update"
@@ -162,3 +169,27 @@ xmlns:view="clr-namespace:AssemblyDataParser.WPF.View;assembly=AssemblyDataParse
 ```
 
 ![Demo](https://github.com/Platonenkov/AssemblyDataParser/blob/dev/Resources/AssemblyData.jpg)
+
+You can also store version data in a file or in an embedded resource file and access it:
+```C#
+//Sample 1
+var from_embed_resource_file = await Assembly.GetAssembly(typeof(Program)).GetDataFromJsonResourceFile<List<AssemblyVersionData>>("Versions.json");
+// Sample 2
+var from_file = AssemblyVersionData.GetVersionInfoFromFile("Versions.json");
+```
+
+`And you can use your personal type with my extensions to get data from file, stream or other embed file resources`
+```C#
+public static async Task<T> GetDataFromFileAsync<T>(this string FilePath, JsonSerializerOptions options = null)
+public static async Task<T> GetDataFromFileAsync<T>(this FileInfo file, JsonSerializerOptions options = null)
+public static async Task<T> GetDataFromStreamAsync<T>(this Stream stream, JsonSerializerOptions options = null)
+```
+
+in WPF you can use converters:
+```XAML
+<ItemsControl ItemsSource="{Binding Converter={files:AssemblyVersionEmbedResourceConverter FileName=Versions.json }}">
+```
+or if you use not embed file:
+```XAML
+<ItemsControl ItemsSource="{Binding Converter={files:AssemblyVersionFileConverter FileName=Versions.json }}">
+```

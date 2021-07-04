@@ -17,6 +17,18 @@
   <tbody>
     <tr>
       <td>
+        <p>GetDataFromJsonResourceFileAsync(string FileName)</p>
+        <p>GetDataFromJsonResourceFile(string FileName)</p>
+      </td>
+      <td>
+        Получает данные из файла ресурсов сборки
+      </td>
+      <td>
+        Get data from assembly embed resource file
+      </td>
+    </tr>
+    <tr>
+      <td>
         ParseLinkerInformationString(string key)
       </td>
       <td>

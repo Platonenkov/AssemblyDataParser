@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Versions.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Versions.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AssemblyParser\AssemblyDataParser.csproj" />
   </ItemGroup>
 
@@ -20,22 +28,6 @@
   <PropertyGroup>
     <SourceRevisionId>
       ^build_date$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))
-      ^update
-      [
-      {
-      "VersionNumber": "1.0.0.1",
-      "Description": [
-      "Добавлен контрол просмотра информации о сборке AssemblyDataView",
-      "Добавлен контрол просмотра информации о версиях сборки AssemblyUpdateDataView",
-      ]
-      },
-      {
-      "VersionNumber": "1.0.0.0",
-      "Description": [
-      "Созданы конверторы для чтения данных о сбоке по namespace",
-      ]
-      },
-      ]
     </SourceRevisionId>
     <Authors>Platonenkov</Authors>
     <Company>https://github.com/Platonenkov</Company>
@@ -47,9 +39,9 @@ Provides access to assembly information, version information, and assembly updat
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/Platonenkov/AssemblyDataParser</RepositoryUrl>
     <PackageTags>Assembly, version, package data</PackageTags>
-    <PackageReleaseNotes>Упрощён доступ к информации о сборке, информация о версии и обновлениях сборки
-Easier access to assembly information, version information, and assembly updates</PackageReleaseNotes>
-    <Version>1.0.0.1</Version>
+    <PackageReleaseNotes>добавлено получение данных из вложенных файлов-ресурсов и файлов по указанному пути.
+added retrieving data from embed resource files and files at the specified path</PackageReleaseNotes>
+    <Version>1.0.1</Version>
 
   </PropertyGroup>
 </Project>

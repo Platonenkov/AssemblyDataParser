@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using System.Threading.Tasks;
 using AssemblyDataParser.Annotations;
+using AssemblyDataParser.Extensions;
 
 namespace AssemblyDataParser
 {
@@ -21,6 +23,52 @@ namespace AssemblyDataParser
             return a is null ? null : Converter(a);
         };
         static string GetStringData(this Func<Assembly, object> converter, Assembly v) => converter(v)?.ToString() ?? AssemblyParserConstans.EMPTY;
+
+        #region Version data file
+
+
+        /// <summary>
+        /// Получает данные из файла ресурсов сборки
+        /// Get data from assembly embed resource file
+        /// </summary>
+        /// <typeparam name="T">data type</typeparam>
+        /// <param name="assembly">current assembly</param>
+        /// <param name="FileName">file path</param>
+        /// <param name="options">json options if need</param>
+        /// <returns></returns>
+        public static async Task<T> GetDataFromJsonResourceFileAsync<T>(this Assembly assembly, string FileName, JsonSerializerOptions options = null)
+        {
+            var resourse_name = assembly.GetManifestResourceNames().FirstOrDefault(r=>r.EndsWith(FileName));
+            if (string.IsNullOrWhiteSpace(resourse_name))
+                return default;
+
+            using var file = assembly.GetManifestResourceStream(resourse_name);
+
+            return await file.GetDataFromStreamAsync<T>(options);
+
+        }
+        /// <summary>
+        /// Получает данные из файла ресурсов сборки
+        /// Get data from assembly embed resource file
+        /// </summary>
+        /// <typeparam name="T">data type</typeparam>
+        /// <param name="assembly">current assembly</param>
+        /// <param name="FileName">file path</param>
+        /// <param name="options">json options if need</param>
+        /// <returns></returns>
+        public static T GetDataFromJsonResourceFile<T>(this Assembly assembly, string FileName, JsonSerializerOptions options = null)
+        {
+            var resourse_name = assembly.GetManifestResourceNames().FirstOrDefault(r=>r.EndsWith(FileName));
+            if (string.IsNullOrWhiteSpace(resourse_name))
+                return default;
+
+            using var file = assembly.GetManifestResourceStream(resourse_name);
+
+            return file.GetDataFromStream<T>(options);
+
+        }
+
+        #endregion
 
         #region Information Section
 
@@ -73,7 +121,7 @@ namespace AssemblyDataParser
         {
             try
             {
-                var options = new JsonSerializerOptions() { AllowTrailingCommas = true };
+                var options = new JsonSerializerOptions() { AllowTrailingCommas = true, IgnoreNullValues = true };
                 var data = JsonSerializer.Deserialize<IEnumerable<AssemblyVersionData>>(row.Trim(), options);
                 return data;
             }
@@ -92,14 +140,14 @@ namespace AssemblyDataParser
         /// <returns>дата и время сборки</returns>
         public static string ParseLinkerTime(this Assembly assembly, bool CheckFileCrationIfNoData = false, string TimeFormat = "dd/MM/yyyy HH:mm")
         {
-            if(ParseLinkerInformationString(assembly, AssemblyParserConstans.DateTimeSection) is { Length: > 0 } row)
+            if (ParseLinkerInformationString(assembly, AssemblyParserConstans.DateTimeSection) is { Length: > 0 } row)
             {
-                if (DateTime.TryParseExact(row, "yyyy-MM-ddTHH:mm:ss:fffZ", CultureInfo.InvariantCulture,DateTimeStyles.None,out var date))
+                if (DateTime.TryParseExact(row, "yyyy-MM-ddTHH:mm:ss:fffZ", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
                     return date.ToString(TimeFormat);
             }
 
             if (CheckFileCrationIfNoData)
-                return assembly.ParseCreationTime(false,TimeFormat);
+                return assembly.ParseCreationTime(false, TimeFormat);
 
             return default;
         }
@@ -171,7 +219,7 @@ namespace AssemblyDataParser
         /// <returns></returns>
         public static string ParseCreationTime(this Assembly assembly, bool CheckMetaDataIfNoFile = false, string TimeFormat = "dd/MM/yyyy HH:mm")
         {
-            var time = assembly.Location is {Length: > 0} location ? new FileInfo(location).CreationTime.ToString(TimeFormat) :
+            var time = assembly.Location is { Length: > 0 } location ? new FileInfo(location).CreationTime.ToString(TimeFormat) :
                 CheckMetaDataIfNoFile ? assembly.ParseLinkerInformationString(AssemblyParserConstans.DateTimeSection) : AssemblyParserConstans.UNKNOWN;
             return string.IsNullOrWhiteSpace(time) ? AssemblyParserConstans.UNKNOWN : time;
         }

@@ -15,6 +15,28 @@
     </tr>
   </thead>
   <tbody>
+        <tr>
+      <td>
+        AssemblyVersionEmbedResourceConverter
+      </td>
+      <td>
+        Получает информацию о версиях из файла ресурсов сборки
+      </td>
+      <td>
+        Get Version information from embed resource file
+      </td>
+    </tr>   
+        <tr>
+      <td>
+        AssemblyVersionFileConverter
+      </td>
+      <td>
+        Получает информацию о версиях из файла по указанному пути
+      </td>
+      <td>
+        Get Version information from data file
+      </td>
+    </tr>   
     <tr>
       <td>
         AssemblyLinkerUpdateDataConverter

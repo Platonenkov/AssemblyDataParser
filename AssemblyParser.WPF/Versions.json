@@ -1,0 +1,22 @@
+[
+  {
+    "VersionNumber": "1.0.1",
+    "Description": [
+      "Добавлен конвертор информации о версиях из вложенных ресурсов AssemblyEmbedResourceConverter",
+      "Добавлен конвертор информации о версиях из файла по указанному пути AssemblyVersionFileConverter"
+    ]
+  },
+  {
+    "VersionNumber": "1.0.0.1",
+    "Description": [
+      "Добавлен контрол просмотра информации о сборке AssemblyDataView",
+      "Добавлен контрол просмотра информации о версиях сборки AssemblyUpdateDataView"
+    ]
+  },
+  {
+    "VersionNumber": "1.0.0.0",
+    "Description": [
+      "Созданы конверторы для чтения данных о сбоке по namespace"
+    ]
+  }
+]

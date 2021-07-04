@@ -8,23 +8,8 @@
   <PropertyGroup>
     <SourceRevisionId>
       ^build_date$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss:fffZ"))
-      ^update
+      <!--^update      
       [
-      {
-      "VersionNumber": "1.0.0.1",
-      "Description": [
-      "Повышение стабильности чтения данных из секции информации",
-      ]
-      },
-      {
-      "VersionNumber": "1.0.0.0",
-      "Description": [
-      "Добавлен класс AssemblyParser для получения информации из сборки",
-      "Добавлено статическое расширение для класса Assebly, позволяющее быстро получить данные о сборки",
-      "Добавлена возможность обработки мета-информации в секции SourceRevisionId",
-      ]
-      },
-      <!--[
       {
       "VersionNumber": "1.0.0.0",
       "Description": [
@@ -40,9 +25,8 @@
       ]
       },
       ]-->
-      ]
     </SourceRevisionId>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.1</Version>
     <Copyright>https://github.com/Platonenkov</Copyright>
     <Authors>Platonenkov</Authors>
     <Trademark>Platonenkov</Trademark>
@@ -51,17 +35,34 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/Platonenkov/AssemblyDataParser</RepositoryUrl>
     <PackageTags>Assembly, version, package data</PackageTags>
-    <PackageReleaseNotes>Упрощён доступ к информации о сборке, информация о версии и обновлениях сборки
-Easier access to assembly information, version information, and assembly updates</PackageReleaseNotes>
+    <PackageReleaseNotes>добавлено получение данных из вложенных файлов-ресурсов и файлов по указанному пути.
+added retrieving data from embed resource files and files at the specified path</PackageReleaseNotes>
     <Description>Предназначена для доступа к информации о сборке, информации о версии и обновлениях сборки
 Provides access to assembly information, version information, and assembly updates</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Versions.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Versions.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Runtime" Version="4.3.1" />
     <PackageReference Include="System.Text.Json" Version="5.0.2" />
   </ItemGroup>
+
+  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Bin</OutputPath>
+    <DocumentationFile>..\Bin\AssemblyDataParser.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Bin</OutputPath>
+    <DocumentationFile>..\Bin\AssemblyDataParser.xml</DocumentationFile>
+  </PropertyGroup>-->
 
   <ItemGroup>
     <None Include="..\Resources\icon.png">
