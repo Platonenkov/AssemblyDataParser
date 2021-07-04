@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace AssemblyDataParser
 {
@@ -26,7 +27,22 @@ namespace AssemblyDataParser
         /// <param name="key">ключ строки мета-информации</param>
         /// <returns>строка данных</returns>
         public string ParseLinkerInformationString(string key) => _Assembly.ParseLinkerInformationString(key);
-
+        /// <summary>
+        /// Получает данные из файла ресурсов сборки
+        /// Get data from assembly embed resource file
+        /// </summary>
+        /// <typeparam name="T">data type</typeparam>
+        /// <param name="FileName">file path</param>
+        /// <returns></returns>
+        public async Task<T> GetDataFromResourceFileAsync<T>(string FileName) => await _Assembly.GetDataFromJsonResourceFileAsync<T>(FileName);
+        /// <summary>
+        /// Получает данные из файла ресурсов сборки
+        /// Get data from assembly embed resource file
+        /// </summary>
+        /// <typeparam name="T">data type</typeparam>
+        /// <param name="FileName">file path</param>
+        /// <returns></returns>
+        public T GetDataFromResourceFile<T>(string FileName) => _Assembly.GetDataFromJsonResourceFile<T>(FileName); 
         /// <summary>
         /// Получает информацию о версиях из мета-информации сборки
         /// Get Version information from assembly meta-information

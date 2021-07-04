@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:AssemblyDataParser.WPF.View"
              xmlns:assemblyDataParser="clr-namespace:AssemblyDataParser;assembly=AssemblyDataParser"
              xmlns:converters="clr-namespace:AssemblyDataParser.WPF.Converters"
+             xmlns:files="clr-namespace:AssemblyDataParser.WPF.Converters.Files"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <ItemsControl ItemsSource="{Binding Converter={converters:AssemblyLinkerUpdateDataConverter}}" Margin="5">
+        <ItemsControl ItemsSource="{Binding Converter={files:AssemblyVersionEmbedResourceConverter FileName=Versions.json }}" Margin="5">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel/>
@@ -17,10 +18,17 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type assemblyDataParser:AssemblyVersionData}">
-                    <Expander Header="{Binding VersionNumber}" IsExpanded="True">
+                    <Expander Header="{Binding }" IsExpanded="True">
                         <Expander.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" FontWeight="Bold" FontSize="18"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition MinWidth="100"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding VersionNumber}" FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Date}" FontSize="12" VerticalAlignment="Center"/>
+                                </Grid>
                             </DataTemplate>
                         </Expander.HeaderTemplate>
                         <StackPanel>

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using AssemblyDataParser;
 using Newtonsoft.Json.Linq;
 
@@ -12,6 +14,7 @@ namespace VersionTestConsole
     {
         static void Main(string[] args)
         {
+            Test_Versions();
             var buildTime = Assembly.GetAssembly(typeof(AssemblyParser)).ParseLinkerTime(true);
             Console.WriteLine($"Build time at {buildTime}");
 
@@ -21,6 +24,13 @@ namespace VersionTestConsole
 
             Console.WriteLine("Write any key to close");
             Console.ReadKey();
+        }
+
+        static async void Test_Versions()
+        {
+            var from_embed_resource_file = await Assembly.GetAssembly(typeof(Program)).GetDataFromJsonResourceFileAsync<List<AssemblyVersionData>>("Versions.json");
+            var from_file = AssemblyVersionData.GetVersionInfoFromFileAsync("Versions.json");
+
         }
         /// <summary>
         /// Печатает на экран информацию о версиях ПО
